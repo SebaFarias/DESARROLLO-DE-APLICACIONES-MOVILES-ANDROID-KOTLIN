@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FirstKotlin</string>
+    <string name="rbop1">Sumar</string>
+    <string name="rbop2">Restar</string>
+    <string name="rbop3">Multiplicar</string>
+    <string name="rbop4">Dividir</string>
+    <string name="et1">Ingrese un valor</string>
+    <string name="et2">Ingrese un valor</string>
+    <string name="btnCalcular">Calcular</string>
+    <string name="tvResultado">El Resultado es:</string>
+</resources>
