@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Cronometro</string>
+    <string name="btn_iniciar">Iniciar</string>
+    <string name="btn_pausar">Pausar</string>
+    <string name="btn_resetear">Resetear</string>
+    <string name="tv_tiempo_default">00:00:00:00</string>
+</resources>
