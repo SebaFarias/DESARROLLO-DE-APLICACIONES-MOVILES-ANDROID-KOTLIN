@@ -85,7 +85,7 @@ fun askOption() : Int
 {
     println("Seleccione una operación:")
     println("(1) Sumar                Restar (2)")
-    println("(3) Multiplicar          Dividi (4)")
+    println("(3) Multiplicar         Dividir (4)")
     println("(5) Mayor                 Menor (6)")
     try{
         return readLine()!!.toInt()
