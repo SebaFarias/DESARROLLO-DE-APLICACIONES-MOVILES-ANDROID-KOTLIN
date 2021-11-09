@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         return if(value < 10){
             "0$value"
         }else{
-            value.toString()
+            "$value"
         }
     }
     private fun checkMax() {
