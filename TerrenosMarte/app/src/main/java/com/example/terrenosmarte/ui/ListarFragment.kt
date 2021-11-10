@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.terrenosmarte.R
@@ -14,11 +15,12 @@ import com.example.terrenosmarte.adapter.TerrainAdapter
 import com.example.terrenosmarte.databinding.FragmentListarBinding
 import com.example.terrenosmarte.model.Terrain
 import com.example.terrenosmarte.viewModel.MarsViewModel
+import com.example.terrenosmarte.viewModel.MarsViewModelFactory
 
 class ListarFragment : Fragment() {
 
     lateinit var binding : FragmentListarBinding
-    lateinit var viewmodel : MarsViewModel
+    lateinit var model : MarsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,13 +28,16 @@ class ListarFragment : Fragment() {
     ): View? {
 
         binding = FragmentListarBinding.inflate(inflater, container, false)
-        viewmodel = ViewModelProvider.AndroidViewModelFactory(requireActivity().application).create(MarsViewModel::class.java)
+       // model = ViewModelProvider(this).get(MarsViewModel::class.java)
+        // model = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(requireActivity().application)).get(MarsViewModel::class.java)
+        model = MarsViewModelFactory(requireActivity().application).create(MarsViewModel::class.java)
+        model.getDataFromServer()
 
         val adapter = TerrainAdapter()
         with( binding ){
             rvLista.layoutManager = GridLayoutManager(context,2)
             rvLista.adapter = adapter
-            adapter.setListener( object : TerrainAdapter.OnClickListener {
+            /*adapter.setListener( object : TerrainAdapter.OnClickListener {
                 override fun onClick(terreno: Terrain) {
                     var bundle = Bundle()
                     bundle.putLong("terrain_id", terreno.id)
@@ -40,9 +45,9 @@ class ListarFragment : Fragment() {
                         .findNavController(container!!.rootView)
                         .navigate(R.id.action_listarFragment_to_detalleFragment, bundle)
                 }
-            })
+            })*/
         }
-        viewmodel.terrainList.observe( viewLifecycleOwner,{
+        model.terrainList.observe( viewLifecycleOwner,{
             try{
                 adapter.setLista(it)
             }catch( err : Exception ){

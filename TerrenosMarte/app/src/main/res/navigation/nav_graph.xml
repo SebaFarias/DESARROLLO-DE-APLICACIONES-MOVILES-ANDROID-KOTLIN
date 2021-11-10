@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/listarFragment"
         android:name="com.example.terrenosmarte.ui.ListarFragment"
-        android:label="fragment_listar"
-        tools:layout="@layout/fragment_listar" >
+        android:label="Terrenos"
+        tools:layout="@layout/fragment_listar">
         <action
             android:id="@+id/action_listarFragment_to_detalleFragment"
             app:destination="@id/detalleFragment" />

@@ -1,5 +1,6 @@
 package com.example.terrenosmarte.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,22 +13,23 @@ import com.squareup.picasso.Picasso
 class TerrainAdapter : RecyclerView.Adapter<TerrainAdapter.TerrainViewHolder>() {
 
     private var lista : ArrayList<Terrain> = ArrayList()
-    private lateinit var listener : OnClickListener
 
-    class TerrainViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView)
+    class TerrainViewHolder( itemView: View) : RecyclerView.ViewHolder(itemView)
     {
-        val binding = ListItemBinding.bind( itemView )
+        private val binding = ListItemBinding.bind( itemView )
+
         fun binData( terreno : Terrain )
         {
             Picasso.get()
                 .load(terreno.img_src)
+                .centerCrop()
+                .resize( 150, 150)
                 .into(binding.ivTerrain)
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TerrainViewHolder {
-        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent)
-        return TerrainViewHolder( view )
+        val view : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
+        return TerrainViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: TerrainViewHolder, position: Int) {
@@ -41,11 +43,5 @@ class TerrainAdapter : RecyclerView.Adapter<TerrainAdapter.TerrainViewHolder>() 
     {
         lista = newLista as ArrayList<Terrain>
         notifyDataSetChanged()
-    }
-    interface OnClickListener{
-        fun onClick( terreno : Terrain )
-    }
-    fun setListener( listener : OnClickListener ){
-        this.listener = listener
     }
 }
