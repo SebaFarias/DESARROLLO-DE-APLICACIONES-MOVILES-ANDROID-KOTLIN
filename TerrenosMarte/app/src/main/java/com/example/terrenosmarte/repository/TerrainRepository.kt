@@ -42,6 +42,14 @@ class TerrainRepository( private val context: Context) {
     {
         return database.getTerrainDao().getAllTerrainsFromDB()
     }
+    fun getTerrainById( id : Long ) : LiveData<Terrain>
+    {
+        return database.getTerrainDao().getTerrainById( id )
+    }
+    fun getFirstTerrain() : LiveData<Terrain>
+    {
+        return database.getTerrainDao().getFirstTerrain()
+    }
 
 
 

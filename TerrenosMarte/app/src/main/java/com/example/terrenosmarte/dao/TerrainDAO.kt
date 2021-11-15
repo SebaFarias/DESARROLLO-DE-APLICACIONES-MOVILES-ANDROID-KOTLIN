@@ -15,4 +15,10 @@ public interface TerrainDAO {
 
     @Query("SELECT * FROM terrain_table")
     fun getAllTerrainsFromDB():LiveData<List<Terrain>>
+
+    @Query("SELECT id, img_src, type, price FROM terrain_table WHERE id = :id")
+    fun getTerrainById( id : Long ) : LiveData<Terrain>
+
+    @Query("SELECT id, img_src, type, price FROM terrain_table LIMIT 1")
+    fun getFirstTerrain() : LiveData<Terrain>
 }

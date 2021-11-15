@@ -13,10 +13,12 @@ import com.squareup.picasso.Picasso
 class TerrainAdapter : RecyclerView.Adapter<TerrainAdapter.TerrainViewHolder>() {
 
     private var lista : ArrayList<Terrain> = ArrayList()
+    lateinit var listener : OnClickListener
 
-    class TerrainViewHolder( itemView: View) : RecyclerView.ViewHolder(itemView)
+    class TerrainViewHolder( itemView: View, listener : OnClickListener) : RecyclerView.ViewHolder(itemView)
     {
         private val binding = ListItemBinding.bind( itemView )
+        private var listener : OnClickListener = listener
 
         fun binData( terreno : Terrain )
         {
@@ -25,11 +27,12 @@ class TerrainAdapter : RecyclerView.Adapter<TerrainAdapter.TerrainViewHolder>() 
                 .centerCrop()
                 .resize( 150, 150)
                 .into(binding.ivTerrain)
+            itemView.setOnClickListener{ listener.onTerrainClick( terreno ) }
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TerrainViewHolder {
         val view : View = LayoutInflater.from(parent.context).inflate(R.layout.list_item,parent,false)
-        return TerrainViewHolder(view)
+        return TerrainViewHolder(view, listener)
     }
 
     override fun onBindViewHolder(holder: TerrainViewHolder, position: Int) {
@@ -43,5 +46,12 @@ class TerrainAdapter : RecyclerView.Adapter<TerrainAdapter.TerrainViewHolder>() 
     {
         lista = newLista as ArrayList<Terrain>
         notifyDataSetChanged()
+    }
+    fun setClickListener( listener : OnClickListener )
+    {
+        this.listener = listener
+    }
+    interface OnClickListener{
+        fun onTerrainClick( terreno : Terrain)
     }
 }

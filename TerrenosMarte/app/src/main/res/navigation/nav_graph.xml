@@ -17,6 +17,6 @@
     <fragment
         android:id="@+id/detalleFragment"
         android:name="com.example.terrenosmarte.ui.DetalleFragment"
-        android:label="fragment_detalle"
+        android:label="Detalle de Terreno"
         tools:layout="@layout/fragment_detalle" />
 </navigation>

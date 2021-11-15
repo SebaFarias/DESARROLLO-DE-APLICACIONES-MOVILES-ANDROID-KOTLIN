@@ -10,6 +10,7 @@ class MarsViewModel( application: Application) : AndroidViewModel( application )
 
     private var repository : TerrainRepository = TerrainRepository( application.applicationContext )
     var terrainList : LiveData<List<Terrain>> = exposeLiveDataFromDatabase()
+    var terrain : LiveData<Terrain> = getFirstTerrain()
 
     fun getDataFromServer(){
         repository.getDataFromServer()
@@ -18,5 +19,10 @@ class MarsViewModel( application: Application) : AndroidViewModel( application )
     {
         return repository.getListaTerrain()
     }
-
+    fun setTerrainById( id : Long ){
+        terrain = repository.getTerrainById( id )
+    }
+    fun getFirstTerrain() : LiveData<Terrain>{
+        return repository.getFirstTerrain()
+    }
 }
