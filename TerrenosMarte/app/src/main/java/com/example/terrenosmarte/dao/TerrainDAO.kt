@@ -13,7 +13,7 @@ public interface TerrainDAO {
     @Insert( onConflict = OnConflictStrategy.REPLACE )
     suspend fun insertAllTerrains( terrainList : List<Terrain>)
 
-    @Query("SELECT * FROM terrain_table")
+    @Query("SELECT id, img_src, type, price FROM terrain_table")
     fun getAllTerrainsFromDB():LiveData<List<Terrain>>
 
     @Query("SELECT id, img_src, type, price FROM terrain_table WHERE id = :id")
