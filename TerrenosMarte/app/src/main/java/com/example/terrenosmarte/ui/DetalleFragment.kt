@@ -36,18 +36,17 @@ class DetalleFragment : Fragment() {
             }
         })
         return binding.root
-
-
     }
+
     fun bindData( terrain : Terrain) {
         with( binding ){
-            lblPrecio.text = DecimalFormat("$ ###,###,####.##").format(terrain.price) ?: "$ 0"
-            lblTipo.text = terrain.type ?: "Arriendo"
             Picasso.get()
                 .load( terrain.img_src )
                 .centerCrop()
                 .resize( ivTerrain2.measuredWidth, ivTerrain2.measuredHeight )
                 .into( ivTerrain2 )
+            lblPrecio.text = DecimalFormat("$ ###,###,###.##").format(terrain.price) ?: "$ 0"
+            lblTipo.text = terrain.type.uppercase()
         }
     }
 }

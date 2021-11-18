@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listaRazasFragment">
+
+    <fragment
+        android:id="@+id/listaRazasFragment"
+        android:name="com.example.razasperros.ui.ListaRazasFragment"
+        android:label="Razas de Perro"
+        tools:layout="@layout/fragment_lista_razas">
+        <action
+            android:id="@+id/action_listaRazasFragment_to_listaPerrosFragment"
+            app:destination="@id/listaPerrosFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listaPerrosFragment"
+        android:name="com.example.razasperros.ui.ListaPerrosFragment"
+        android:label="perros"
+        tools:layout="@layout/fragment_lista_perros" />
+</navigation>

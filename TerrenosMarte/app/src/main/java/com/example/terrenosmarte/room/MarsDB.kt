@@ -9,7 +9,7 @@ import com.example.terrenosmarte.model.Terrain
 
 private const val DATA_BASE_NAME = "mars_db"
 
-@Database( entities = [Terrain::class], version= 1 )
+@Database( entities = [Terrain::class], version= 3 )
 public abstract class MarsDB : RoomDatabase()
 {
     abstract fun getTerrainDao() : TerrainDAO
@@ -26,7 +26,7 @@ public abstract class MarsDB : RoomDatabase()
                 return tempInstance
             }
             synchronized(this){
-                val instance = Room.databaseBuilder( context, MarsDB::class.java,DATA_BASE_NAME).build()
+                val instance = Room.databaseBuilder( context, MarsDB::class.java,DATA_BASE_NAME).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }
