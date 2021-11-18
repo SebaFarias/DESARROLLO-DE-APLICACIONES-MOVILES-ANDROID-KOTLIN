@@ -38,6 +38,7 @@ class ListaRazasFragment : Fragment() {
 
             rvRazas.layoutManager = LinearLayoutManager( context )
             rvRazas.adapter = adapter
+            model.exposeRazasFromDB().value?.let { adapter.setLista(it) }
 
             adapter.setClickListener( object : RazaAdapter.OnClickListener {
                 override fun onRazaClick( raza: Raza ) {
@@ -50,7 +51,7 @@ class ListaRazasFragment : Fragment() {
                 }
             })
         }
-        model.razasList.observe( viewLifecycleOwner, {
+        model.exposeRazasFromDB().observe( viewLifecycleOwner, {
             try{
                 adapter.setLista(it)
                 Log.d("RVRazas",it[1].name)
