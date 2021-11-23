@@ -37,8 +37,8 @@ class ListarFragment : Fragment() {
         Si es un custom:
         model = ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory(requireActivity().application)).get(MarsViewModel::class.java)
 
-        Pero no sé xq no funcionó así, asi q :
-         model = MarsViewModelFactory(requireActivity().application).create(MarsViewModel::class.java)*/
+        Pero no sé xq no funcionó así, asi q hice una Factory:
+        model = MarsViewModelFactory(requireActivity().application).create(MarsViewModel::class.java)*/
         model = MarsViewModelFactory(requireActivity().application).create(MarsViewModel::class.java)
         model.getDataFromServer()
 
@@ -67,7 +67,6 @@ class ListarFragment : Fragment() {
                 Log.e("LISTAR_FRAGMENT",err.message ?: "No hay mensaje de error")
             }
         })
-
         return binding.root
     }
 }

@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class TerrainRepository( private val context: Context) {
 
-    private val service = TerrainClient.getClient()
+    private val service = TerrainClient.getClient(TerrainClient.BASE_URL)
     val database = MarsDB.getDatabase( context )
 
     //La vieja confiable
